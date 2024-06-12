@@ -3,27 +3,19 @@ plugins {
     id "java-library"
     id "war"
     id "idea"
-    id "org.grails.grails-plugin"
-    id "org.grails.internal.grails-plugin-publish"
+    id "org.graceframework.grace-plugin"
     id "application"
     id "eclipse"
+    id "org.graceframework.grace-gsp"
 }
 
 group "org.grails.plugins"
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
 
 repositories {
     mavenCentral()
-    maven { url "https://repo.grails.org/grails/core" }
-}
-
-dependencyManagement {
-    imports {
-        mavenBom "org.grails:grails-bom:$grailsVersion"
-    }
-    applyMavenExclusions false
 }
 
 dependencies {
@@ -32,8 +24,12 @@ dependencies {
     implementation "org.springframework.boot:spring-boot-autoconfigure"
     implementation "org.springframework.boot:spring-boot-starter-tomcat"
 
-    implementation "org.grails:grails-web-boot"
-    implementation "org.grails:grails-dependencies"
+    implementation "org.graceframework:grace-boot"
+
+    implementation "org.graceframework:grace-plugin-rest"
+    implementation "org.graceframework:grace-plugin-url-mappings"
+    implementation "org.graceframework:grace-plugin-i18n"
+    implementation "org.graceframework:grace-plugin-gsp"
 
     api 'net.sf.opencsv:opencsv:2.3'
 
@@ -45,8 +41,6 @@ dependencies {
     api 'net.sourceforge.jexcelapi:jxl:2.6.12'
     api 'commons-beanutils:commons-beanutils:1.9.4'
     api 'commons-codec:commons-codec:1.17.0'
-
-    testCompileOnly "org.grails:grails-plugin-testing"
 }
 
 jar {
@@ -64,7 +58,7 @@ jar {
     archiveClassifier=''
 }
 
-grailsPublish {
+/* grailsPublish {
     license {
         name = 'Apache-2.0'
     }
@@ -84,4 +78,4 @@ grailsPublish {
                     joasgarcia: 'Joás Garcia',
                     frangarcia: 'Fran García',
                     dustindclark: 'Dustin Clark' ]
-}
+} */
